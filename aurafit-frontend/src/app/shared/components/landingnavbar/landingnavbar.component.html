@@ -1,0 +1,32 @@
+<nav class="landing-navbar mat-elevation-z4">
+  <div class="navbar-container">
+
+    <!-- Brand -->
+    <a class="brand" routerLink="/">
+      <!--<span class="aurafit-logo">AURAFIT</span>-->
+      <img src="logo.png" alt="Logo" class="rotating-logo" />
+
+      <img src="logo-textonly-light.png" alt="AuraFit Logo" class="aurafit-logo" />
+
+    </a>
+
+    <!-- Hamburger Icon -->
+    <button mat-icon-button class="mobile-menu-button" (click)="toggleMobileMenu()">
+      <mat-icon class="material-symbols-outlined">{{ isMobileMenuOpen ? 'close' : 'menu' }}</mat-icon>
+    </button>
+
+    <!-- Desktop + Mobile Nav -->
+    <div class="nav-group" [class.open]="isMobileMenuOpen">
+      <ul class="nav-links">
+        <li><a routerLink="/team-form" (click)="closeMenu()">Add Team Member</a></li>
+        <li><a routerLink="/about" (click)="closeMenu()">About Us</a></li>
+        <li><a routerLink="/contact" (click)="closeMenu()">Contact Us</a></li>
+        <li><a routerLink="/faq" (click)="closeMenu()">FAQ</a></li>
+      </ul>
+      <div class="auth-buttons">
+        <a mat-stroked-button routerLink="/login" class="btn login-btn" (click)="closeMenu()">Login</a>
+        <a mat-flat-button routerLink="/register" class="btn signup-btn" (click)="closeMenu()">Sign Up</a>
+      </div>
+    </div>
+  </div>
+</nav>

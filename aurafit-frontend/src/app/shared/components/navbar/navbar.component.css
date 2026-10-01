@@ -1,0 +1,31 @@
+.mat-toolbar {
+  background-color: var(--mat-sys-primary);
+  color: var(--mat-sys-on-primary);
+  transition: background-color 0.3s, color 0.3s;
+  box-shadow: var(--mat-sys-level1);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.brand {
+  color: var(--mat-sys-on-secondary-fixed)
+  /*  font-weight: 700;
+  font-size: 1.5rem;*/
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.symbol{
+    color: var(--mat-sys-surface)
+}
+
+/* Logo image styles */
+.logo {
+  width: 120px; /* adjust as needed */
+  height: auto;
+  object-fit: contain;
+}

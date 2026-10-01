@@ -1,0 +1,32 @@
+<mat-card class="max-w-xl mx-auto p-6 shadow-xl space-y-6">
+  <h2 class="text-2xl font-semibold text-center">Set Your Fitness Goal</h2>
+
+  <mat-checkbox [(ngModel)]="autoSuggested" (change)="toggleAutoSuggested()">
+    Use Auto-Suggested Goals
+  </mat-checkbox>
+
+  <div *ngIf="!autoSuggested" class="space-y-4">
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Goal Type</mat-label>
+      <mat-select [(ngModel)]="goalType" (selectionChange)="onGoalTypeChange()" required>
+        <mat-option value="" disabled>Select goal</mat-option>
+        <mat-option *ngFor="let gt of goalTypes" [value]="gt">{{ gt }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Weekly Target (kg)</mat-label>
+      <input matInput type="number" [(ngModel)]="weeklyTargetKg" min="0" step="0.1"
+             [disabled]="goalType === 'Maintain Weight'">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="w-full">
+      <mat-label>Target Calories</mat-label>
+      <input matInput type="number" [(ngModel)]="targetCalories" min="0">
+    </mat-form-field>
+  </div>
+
+  <button mat-raised-button color="primary" class="w-full" (click)="submitGoal()">Save Goal</button>
+
+  <mat-error *ngIf="errorMessage">{{ errorMessage }}</mat-error>
+</mat-card>

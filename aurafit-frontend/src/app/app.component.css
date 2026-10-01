@@ -1,0 +1,88 @@
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* === Fixed Navbar === */
+.navbar-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 64px;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* === Fixed Sidebar === */
+.sidebar-fixed {
+  position: fixed;
+  top: 64px; /* below navbar */
+  bottom: 0;
+  left: 0;
+  width: 240px;
+  background-color: var(--mat-sys-surface);
+  border-right: 1px solid var(--mat-sys-outline);
+  z-index: 999;
+  overflow: hidden;
+}
+
+/* === Main layout beside sidebar === */
+.main-layout {
+  display: flex;
+  padding-top: 64px; /* navbar height */
+
+}
+
+/* === Scrollable Content beside sidebar === */
+.main-content-scrollable {
+  /*margin-left: 240px;*/ /* width of sidebar */
+  width: calc(100% - 240px);
+  max-height: calc(100vh - 64px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* === Main page content === */
+.main-content {
+  padding: 1rem;
+  flex: 1 0 auto;
+}
+
+/* === Sticky Footer === */
+.footer-fixed {
+  flex-shrink: 0;
+  margin-top: auto;
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+/*  box-shadow: inset 0 1px 0 var(--mat-sys-outline);*/
+/*  padding-top:10px;*/
+}
+
+/* === Auth Layout (Login/Register) === */
+.auth-layout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  min-height: 100vh;
+}
+
+.main-layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden; /* prevents sidebar/content overflow scroll */
+}
+
+.main-content-scrollable {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-content {
+  flex: 1;
+  padding: 24px;
+}

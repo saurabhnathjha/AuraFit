@@ -1,0 +1,127 @@
+<div class="user-container">
+  <div class="user-page-container">
+    <div class="cards-row">
+
+      <!-- Profile Card -->
+      <mat-card appearance="outlined"class="user-card">
+        <div class="card-header">
+          <div class="header-content">
+            <span class="material-symbols-outlined">person</span>
+            <h2 class="mat-title">My Profile</h2>
+          </div>
+          <button mat-icon-button
+                  (click)="editProfileMode = true"
+                  matTooltip="Edit Profile"
+                  *ngIf="!editProfileMode && profile"
+                  aria-label="Edit Profile">
+            <span class="shadow material-symbols-outlined">edit</span>
+          </button>
+
+        </div>
+
+        <mat-divider></mat-divider>
+
+        <div *ngIf="!editProfileMode && profile" class="card-content">
+          <p><span class="material-symbols-outlined icon">calendar_today</span> <span class="label">Age:</span> {{ profile.age }}</p>
+          <p><span class="material-symbols-outlined icon">male</span> <span class="label">Gender:</span> {{ profile.gender }}</p>
+          <p><span class="material-symbols-outlined icon">height</span> <span class="label">Height:</span> {{ profile.heightCm }} cm</p>
+          <p><span class="material-symbols-outlined icon">fitness_center</span> <span class="label">Weight:</span> {{ profile.weightKg }} kg</p>
+          <p><span class="material-symbols-outlined icon">directions_run</span> <span class="label">Activity Level:</span> {{ profile.activityLevel }}</p>
+        </div>
+
+        <form *ngIf="editProfileMode" (ngSubmit)="updateProfile()" class="form-content">
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Age</mat-label>
+            <input matInput type="number" [(ngModel)]="profile.age" name="age" required>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Gender</mat-label>
+            <mat-select [(ngModel)]="profile.gender" name="gender" required>
+              <mat-option value="Male">Male</mat-option>
+              <mat-option value="Female">Female</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Height (cm)</mat-label>
+            <input matInput type="number" [(ngModel)]="profile.heightCm" name="height" required>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Weight (kg)</mat-label>
+            <input matInput type="number" [(ngModel)]="profile.weightKg" name="weight" required>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="full-width">
+            <mat-label>Activity Level</mat-label>
+            <mat-select [(ngModel)]="profile.activityLevel" name="activityLevel" required>
+              <mat-option *ngFor="let level of activityLevels" [value]="level">{{ level }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div class="form-buttons">
+            <button mat-flat-button color="primary" type="submit">Save</button>
+            <button mat-stroked-button type="button" (click)="editProfileMode = false">Cancel</button>
+          </div>
+        </form>
+      </mat-card>
+
+      <!-- Goal Card -->
+      <mat-card appearance="outlined" class="user-card">
+        <div class="card-header">
+          <div class="header-content">
+            <span class="material-symbols-outlined">track_changes</span>
+            <h2 class="mat-title">My Goal</h2>
+          </div>
+          <button mat-icon-button color="primary" (click)="editGoalMode = true" *ngIf="!editGoalMode && goal" aria-label="Edit Goal" matTooltip="Edit goal">
+            <span class="shadow material-symbols-outlined">edit</span>
+          </button>
+        </div>
+        <mat-divider></mat-divider>
+
+        <div *ngIf="!editGoalMode && goal" class="card-content">
+          <p><span class="material-symbols-outlined icon">target</span> <span class="label">Goal Type:</span> {{ goal.goalType }}</p>
+          <p><span class="material-symbols-outlined icon">scale</span> <span class="label">Weekly Target:</span> {{ goal.weeklyTargetKg }} kg</p>
+          <p><span class="material-symbols-outlined icon">local_fire_department</span> <span class="label">Target Calories:</span> {{ goal.targetCalories }}</p>
+        </div>
+
+        <form *ngIf="editGoalMode" (ngSubmit)="updateGoal()" class="form-content">
+          <mat-checkbox [(ngModel)]="goal.autoSuggested" name="autoSuggested" (change)="onGoalAutoSuggestToggle()">
+            Auto-Suggest Values
+          </mat-checkbox>
+
+          <div *ngIf="!goal.autoSuggested">
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Goal Type</mat-label>
+              <mat-select [(ngModel)]="goal.goalType" name="goalType" (selectionChange)="onGoalTypeChange($event.value)">
+                <mat-option value="WeightLoss">Weight Loss</mat-option>
+                <mat-option value="Maintain">Maintain</mat-option>
+                <mat-option value="WeightGain">Weight Gain</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Weekly Target (kg)</mat-label>
+              <input matInput type="number" [(ngModel)]="goal.weeklyTargetKg" name="weeklyTargetKg" [readonly]="goal.goalType === 'Maintain'">
+            </mat-form-field>
+            <mat-form-field appearance="fill" class="full-width">
+              <mat-label>Target Calories</mat-label>
+              <input matInput type="number" [(ngModel)]="goal.targetCalories" name="targetCalories">
+            </mat-form-field>
+          </div>
+
+          <div *ngIf="goal.autoSuggested && goal.goalType" class="auto-summary">
+            <p><span class="material-symbols-outlined icon">target</span> <span class="label">Auto Goal Type:</span> {{ goal.goalType }}</p>
+            <p><span class="material-symbols-outlined icon">scale</span> <span class="label">Weekly Target:</span> {{ goal.weeklyTargetKg }} kg</p>
+            <p><span class="material-symbols-outlined icon">local_fire_department</span> <span class="label">Target Calories:</span> {{ goal.targetCalories }}</p>
+          </div>
+
+          <div class="form-buttons">
+            <button mat-flat-button color="primary" type="submit">Save</button>
+            <button mat-stroked-button type="button" (click)="editGoalMode = false">Cancel</button>
+          </div>
+        </form>
+      </mat-card>
+    </div>
+
+    <!-- Logout Button -->
+    <div class="logout-button-wrapper">
+       <button class="logout-btn" mat-flat-button  (click)="logout()">Logout</button>
+    </div>
+  </div>
+</div>

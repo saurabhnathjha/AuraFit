@@ -1,0 +1,32 @@
+<!-- Show landing navbar if hideLayout is true -->
+<ng-container *ngIf="hideLayout; else mainNavbar">
+  <app-landingnavbar class="navbar-fixed"></app-landingnavbar>
+</ng-container>
+
+<!-- Otherwise show main navbar -->
+<ng-template #mainNavbar>
+  <app-navbar class="navbar-fixed" (toggleSidebar)="onToggleSidebar()"></app-navbar>
+</ng-template>
+
+<!-- Layout switching -->
+<ng-container *ngIf="hideLayout; else mainLayout">
+  <main class="auth-layout">
+    <router-outlet></router-outlet>
+  </main>
+</ng-container>
+
+<ng-template #mainLayout>
+  <!-- Sidebar + Main Content -->
+  <div class="main-layout" style="display: flex; min-height: 100vh;">
+    <app-sidebar [collapsed]="toggleCollapsedView || isMobile"
+                 (toggleSidebar)="onToggleSidebar()">
+    </app-sidebar>
+
+    <div class="main-content-scrollable" style="flex: 1; display: flex; flex-direction: column;">
+      <main class="main-content">
+        <router-outlet></router-outlet>
+      </main>
+      <app-footer class="footer-fixed"></app-footer>
+    </div>
+  </div>
+</ng-template>

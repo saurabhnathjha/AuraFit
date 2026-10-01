@@ -1,0 +1,29 @@
+<mat-toolbar class="mat-elevation-z4">
+  <!-- Sidebar toggle button -->
+  <button class="symbol" mat-icon-button (click)="toggleSidebar.emit()" matTooltip="Toggle sidebar">
+    <span class="material-symbols-outlined">menu</span>
+  </button>
+
+  <!-- App Brand -->
+  <!--<span class="aurafit-logo">AuraFit</span>-->
+  <img [src]="isDarkMode ? 'logo-text-dark.png' : 'logo-text-light.png'"
+       alt="AuraFit Logo"
+       class="logo" />
+
+
+
+  <span class="spacer"></span>
+
+  <!-- Theme toggle button -->
+  <!-- Theme toggle button -->
+  <button class="symbol" mat-icon-button (click)="toggleTheme()" matTooltip="Toggle Theme">
+    <span class="material-symbols-outlined">
+      {{ isDarkMode ? 'light_mode' : 'dark_mode' }}
+    </span>
+  </button>
+
+  <!-- Profile -->
+  <a mat-icon-button class="symbol" routerLink="/user" matTooltip="My Profile">
+    <span class="material-symbols-outlined">person</span>
+  </a>
+</mat-toolbar>

@@ -1,0 +1,279 @@
+/* --- Workout Container --- */
+.log-workout-container {
+  margin: auto;
+  margin-bottom: 32px;
+  padding: 24px;
+  box-shadow: var(--mat-sys-level5);
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (min-width: 1024px) {
+  .log-workout-container {
+    max-width: 900px;
+  }
+}
+
+.workout-title-toolbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding: 0; /* Optional: tighten spacing */
+}
+
+/* --- Exercise Fields Layout --- */
+.exercise-fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+  .exercise-fields mat-form-field,
+  .exercise-fields mat-checkbox {
+    flex: 1 1 45%;
+    min-width: 140px;
+  }
+
+@media (min-width: 768px) {
+  .exercise-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+    .exercise-fields mat-form-field,
+    .exercise-fields mat-checkbox {
+      width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+  .exercise-fields mat-form-field,
+  .exercise-fields mat-checkbox {
+    flex: 1 1 100%;
+  }
+}
+
+/* --- Expansion Panel Styling --- */
+.mat-expansion-panel {
+  border-radius: 8px;
+  margin-bottom: 12px;
+/*  background-color: var(--mat-sys-surface);*/
+/*  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);*/
+}
+
+
+
+/* --- Button Row Styling --- */
+.button-row {
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+
+/* --- Datetime Field --- */
+mat-form-field.log-time-field {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+/* --- Divider Styling --- */
+mat-divider {
+  margin: 32px auto;
+  max-width: 900px;
+}
+
+/* --- Top Button Area --- */
+.top-log-btn-container {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.add-exercise-fab {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+
+/* Add Exercise Button always below panels */
+.add-exercise-bottom-btn {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 16px;
+}
+
+/* Icon inside expansion header (right corner) */
+mat-expansion-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+  .remove-icon:hover {
+    color: red;
+  }
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+
+
+.header-left {
+  display: flex;
+  align-items: center;
+/*  font-weight: 500;
+  font-size: 1rem;*/
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.duration, .duration-inside {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+/*  font-size: 0.875rem;*/
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.total-calories-chip {
+  background-color: var(--mat-sys-secondary-container);
+  color: var(--mat-sys-on-secondary-container);
+}
+
+.button-row .action-btn.icon-only span {
+  display: none;
+}
+
+.button-row .action-btn.icon-only mat-icon {
+  margin-right: 0;
+}
+
+.log-date {
+  font-size: 1rem;
+  color: var(--mat-sys-on-surface);
+  font-weight: 600;
+}
+
+/* Responsive header tweaks */
+@media (max-width: 600px) {
+  .log-date {
+    font-size: 0.9rem;
+  }
+
+  .header-right {
+    gap: 8px;
+  }
+}
+/* Custom Material 3 style chip */
+.custom-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 12px;
+  border-radius: 999px;
+/*  font-size: 0.875rem;*/
+/*  font-weight: 500;*/
+  gap: 6px;
+  border: 1px solid var(--mat-sys-outline);
+/*  background-color: var(--mat-sys-surface-container-highest);*/
+  color: var(--mat-sys-on-surface);
+  flex-shrink: 1;
+  min-width: 0;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.total-calories-chip {
+  background-color: var(--mat-sys-secondary-container);
+  color: var(--mat-sys-on-secondary-container);
+}
+
+@media (max-width: 600px) {
+  .custom-chip {
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    gap: 4px;
+  }
+
+  .header-right {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 8px;
+  }
+
+  .exercise-fields .custom-chip {
+    font-size: 0.75rem;
+    padding: 3px 8px;
+  }
+}
+
+.header-right > * {
+  margin-right: 8px; /* or 8px if you prefer */
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* spacing between date and duration */
+}
+
+@media (max-width: 600px) {
+  .header-left {
+    gap: 0; /* tighten for mobile, since duration hidden anyway */
+  }
+
+  .duration-inline {
+    display: none; /* Hide in header on small screens */
+  }
+
+  .duration-inside {
+    margin-top: 8px;
+    font-size: 0.875rem;
+  }
+}
+
+.fire {
+  color: var(--mat-sys-primary);
+  background-color: var(--mat-sys-surface)
+}
+
+.exercise-fields {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+  .exercise-fields mat-form-field,
+  .exercise-fields mat-checkbox {
+    flex: 1 1 45%;
+    min-width: 140px;
+  }
+
+@media (max-width: 600px) {
+  .exercise-fields mat-form-field,
+  .exercise-fields mat-checkbox {
+    flex: 1 1 100%;
+  }
+}
+
+@media (min-width: 768px) {
+  .exercise-fields {
+
+    flex-wrap: wrap;
+  }
+    .exercise-fields mat-form-field,
+    .exercise-fields mat-checkbox {
+      flex: 1 1 48%;
+      width: 100%;
+    }
+}

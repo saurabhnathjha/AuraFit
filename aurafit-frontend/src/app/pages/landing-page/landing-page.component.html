@@ -1,0 +1,120 @@
+
+
+
+<div class="landing-container">
+  <div class="hero-section">
+    <img [src]="currentImage" alt="Banner Image" class="hero-img" />
+
+    <div class="hero-text">
+      <h1><span class="brand">AURAFIT</span> FITNESS PERSONALISED BY INTELLIGENCE</h1>
+
+      <button mat-raised-button color="primary" class="cta-button" routerLink="/register">
+        <span class="joinBtn">JOIN NOW</span>
+      </button>
+    </div>
+  </div>
+</div>
+<!--<div class="carousel-container">
+    <div class="carousel-track"
+         [style.transform]="'translateX(-' + currentIndex * 100 + '%)'">
+      <div class="carousel-slide" *ngFor="let image of heroImages">
+        <img [src]="image" alt="Hero Image" />
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-cta">
+    <h1><span class="brand">AURAFIT</span> FITNESS PERSONALISED BY INTELLIGENCE</h1>
+    <button mat-raised-button color="primary" routerLink="/register">JOIN TODAY</button>
+  </div>
+</div>
+      -->
+
+<section class="features-section">
+  <h2 class="features-title">App Features</h2>
+  <div class="feature-cards-container">
+    <mat-card class="feature-card" *ngFor="let feature of features">
+      <img mat-card-image [src]="feature.image" alt="image here" />
+      <mat-card-content>
+        <h3 class="feature-title">{{ feature.title }}</h3>
+        <p class="feature-description">{{ feature.description }}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</section>
+
+
+<section class="bmi-section">
+  <div class="bmi-container">
+    <h2 class="bmi-title">Calculate Your BMI</h2>
+    <p class="bmi-subtitle">Quickly check your Body Mass Index by entering your height and weight</p>
+    <div class="bmi-form">
+      <input type="number" [(ngModel)]="height" placeholder="Height (cm)" />
+      <input type="number" [(ngModel)]="weight" placeholder="Weight (kg)" />
+      <button (click)="calculateBMI()">Calculate</button>
+    </div>
+    <div *ngIf="bmiResult" class="bmi-result bmi-result-card">
+
+      Your BMI is: <strong> <span [ngClass]="bmiClass">{{ bmiResult }}</span></strong> - {{ bmiMessage }}
+
+    </div>
+  </div>
+</section>
+
+
+
+<section class="testimonials-section">
+  <h2 class="section-title">What Our Clients Say</h2>
+  <div class="testimonials-container">
+    <div class="testimonial">
+      <img src="Narendar.jpeg" alt="Narendar R." class="testimonial-avatar">
+      <p class="testimonial-text">"I was the one who suggested adding an image to this section — and it made all the difference! Looks so much better now.!"</p>
+      <p class="testimonial-author">— Narendar R.</p>
+    </div>
+    <div class="testimonial">
+      <img src="Rajarajan.jpeg" alt="Rajarajan" class="testimonial-avatar">
+      <p class="testimonial-text">"I’ve used AuraFit for some time — and honestly, it’s just nice. Simple, clean, and does exactly what I need."</p>
+      <p class="testimonial-author">— Rajarajan</p>
+    </div>
+    <div class="testimonial">
+      <img src="Yugandhar.jpeg" alt="Yugandhar" class="testimonial-avatar">
+      <p class="testimonial-text">"The workout log templates? That was my idea! I'm glad it's helping others stay consistent and organized. AuraFit just keeps getting better."</p>
+      <p class="testimonial-author">— Yugandhar N.</p>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<footer class="footer-section">
+  <div class="footer-container">
+    <!-- About Us -->
+    <div class="footer-column">
+      <h3>About Us</h3>
+      <p>
+        AuraFit blends fitness science with intelligent tech to craft a wellness journey just for you.
+        Whether you're starting out or leveling up, our app helps you stay motivated, track progress,
+        and get smart suggestions from Aura — your AI fitness companion. Empower your goals, your way.
+      </p>
+    </div>
+
+    <!-- New Section: Fuel for Thought -->
+    <div class="footer-column">
+      <h3>Fuel for Thought</h3>
+      <p>Your fitness journey is more than reps and routines — it’s mindset, motivation, and momentum.</p>
+      <p>Discover quick health bytes, science-backed tips, and real stories from the AuraFit community.</p>
+
+    </div>
+  </div>
+
+  <!-- Bottom -->
+  <div class="footer-bottom">
+    <p>
+      Copyright ©2025 All rights reserved |
+      This app is made with ❤️ by <a href="#">AuraFit Team</a>
+    </p>
+  </div>
+</footer>
+

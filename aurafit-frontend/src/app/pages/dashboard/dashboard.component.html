@@ -1,0 +1,102 @@
+<div class="dashboard-wrapper" *ngIf="summary">
+  <!-- MAIN DASHBOARD SECTION -->
+  <div class="dashboard-container">
+    <div class="section-container">
+      <!-- Title -->
+      <h2 class="dashboard-title">
+        <span class="material-symbols-outlined">dashboard</span>
+        Today's Summary
+      </h2>
+
+      <!-- Goal Summary -->
+      <mat-card class="goal-summary" appearance="outlined">
+        <mat-card-header>
+          <mat-card-title>Your Goal</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="mat-body" >
+          <p>
+            Type: <span class="highlight">{{ summary.goalType }}</span>
+          </p>
+          <p *ngIf="summary.goalType.toLowerCase() !== 'maintain'">
+            Weekly Target: <span class="highlight">{{ summary.weeklyTargetKg }} kg</span>
+          </p>
+          <p>
+            Daily Target Calories: <span class="highlight">{{ summary.targetCalories }} kcal</span>
+          </p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- Divider -->
+    <mat-divider class="my-divider"></mat-divider>
+
+    <!-- Calorie Summary Heading -->
+    <h3 class="section-title">
+      <span class="material-symbols-outlined section-icon">local_fire_department</span>
+      Calorie Summary
+    </h3>
+
+    <!-- Calorie Stats Grid -->
+    <div class="stats-grid">
+      <!-- Calories Consumed -->
+      <mat-card appearance="outlined" class="stats-card consumed-card">
+        <mat-card-content>
+          <div class="stat-label">Calories Consumed</div>
+          <div class="stat-value">{{ summary.caloriesConsumed }} kcal</div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Calories Burned -->
+      <mat-card appearance="outlined" class="stats-card burned-card">
+        <mat-card-content>
+          <div class="stat-label">Calories Burned</div>
+          <div class="stat-value">{{ summary.caloriesBurned }} kcal</div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- Net Calorie Progress -->
+    <mat-card appearance="outlined">
+      <mat-card-header>
+        <mat-card-title>Net Calorie Progress</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="progress-text">
+          Net Calories = Consumed - Burned =
+          <span class="highlight">{{ summary.caloriesConsumed - summary.caloriesBurned }}</span> /
+          <span class="highlight">{{ summary.targetCalories }}</span>
+        </p>
+        <mat-progress-bar mode="determinate" color="primary"
+                          [value]="Math.min(((summary.caloriesConsumed - summary.caloriesBurned) / summary.targetCalories) * 100, 100)">
+        </mat-progress-bar>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Calories Left Card -->
+    <mat-card appearance="outlined" class="calories-left-card">
+      <mat-card-content>
+        <div class="stat-label">Calories Left Today</div>
+        <div class="stat-value calories-left-highlight">
+          {{ caloriesLeft() }} kcal
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- SPOTIFY EMBED SECTION -->
+  <mat-card appearance="outlined" class="spotify-container">
+    <mat-card-header>
+      <mat-card-title>Today's Vibes 🎧</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <iframe style="border-radius:8px"
+              [src]="spotifySrc | safeUrl"
+              width="100%" height="352" frameborder="0"
+              allowfullscreen
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy">
+      </iframe>
+
+    </mat-card-content>
+  </mat-card>
+</div>

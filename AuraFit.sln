@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{0B2204D1-6F9A-49E0-82D8-14CD47413AA0}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\Downloads\AuraFitDb.dacpac = ..\..\Downloads\AuraFitDb.dacpac
+		Insert1.sql = Insert1.sql
+		Setup.sql = Setup.sql
+		SqlQuery_1.sql = SqlQuery_1.sql
+		SqlQuery_2.sql = SqlQuery_2.sql
+		SqlQuery_3.sql = SqlQuery_3.sql
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuraFitWebService", "AuraFitWebService\AuraFitWebService.csproj", "{20DB9D7A-B8DA-4C79-BC0D-11B2E20D333E}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "aurafit-frontend", "aurafit-frontend\aurafit-frontend.esproj", "{620F4FAD-59E4-4410-B9EC-9CE43EB9A8F9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuraFitDataAccessLayer", "AuraFitDataAccessLayer\AuraFitDataAccessLayer.csproj", "{D5666D5F-3E4D-4502-96ED-8BD625701B03}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuraFitDataAccessLayerTests", "AuraFitDataAccessLayerTests\AuraFitDataAccessLayerTests.csproj", "{27F6E031-4491-4DE7-B8CA-B13CFC2CD5A4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuraFitAPITestin", "AuraFitAPITestin\AuraFitAPITestin.csproj", "{829CC1EC-A938-421D-89F1-E9B8F360FE29}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{20DB9D7A-B8DA-4C79-BC0D-11B2E20D333E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20DB9D7A-B8DA-4C79-BC0D-11B2E20D333E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20DB9D7A-B8DA-4C79-BC0D-11B2E20D333E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20DB9D7A-B8DA-4C79-BC0D-11B2E20D333E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{620F4FAD-59E4-4410-B9EC-9CE43EB9A8F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{620F4FAD-59E4-4410-B9EC-9CE43EB9A8F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{620F4FAD-59E4-4410-B9EC-9CE43EB9A8F9}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{620F4FAD-59E4-4410-B9EC-9CE43EB9A8F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{620F4FAD-59E4-4410-B9EC-9CE43EB9A8F9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{620F4FAD-59E4-4410-B9EC-9CE43EB9A8F9}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D5666D5F-3E4D-4502-96ED-8BD625701B03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5666D5F-3E4D-4502-96ED-8BD625701B03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5666D5F-3E4D-4502-96ED-8BD625701B03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5666D5F-3E4D-4502-96ED-8BD625701B03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27F6E031-4491-4DE7-B8CA-B13CFC2CD5A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27F6E031-4491-4DE7-B8CA-B13CFC2CD5A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27F6E031-4491-4DE7-B8CA-B13CFC2CD5A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27F6E031-4491-4DE7-B8CA-B13CFC2CD5A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{829CC1EC-A938-421D-89F1-E9B8F360FE29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{829CC1EC-A938-421D-89F1-E9B8F360FE29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{829CC1EC-A938-421D-89F1-E9B8F360FE29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{829CC1EC-A938-421D-89F1-E9B8F360FE29}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EC633EEB-139E-46C2-9995-E558432074E0}
+	EndGlobalSection
+EndGlobal

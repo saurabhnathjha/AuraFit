@@ -1,0 +1,21 @@
+<div class="about-container">
+  <h2>Our Team</h2>
+
+  <div *ngIf="teamMembers.length === 0">
+    <p>No team members added yet.</p>
+  </div>
+  <div class="team-list">
+    <div *ngFor="let member of teamMembers; let i = index" class="team-card">
+      <p><strong>{{ member.name }}</strong></p>
+      <p><strong>Role:</strong> {{ member.role }}</p>
+      <p><strong>Contribution:</strong> {{ member.contribution }}</p>
+      <p><a [href]="member.linkedin" target="_blank">LinkedIn Profile</a></p>
+
+      <!-- ✨ Add these buttons -->
+      <div class="action-buttons">
+        <button (click)="editMember(i)">Edit</button>
+        <button (click)="deleteMember(i)">Delete</button>
+      </div>
+    </div>
+  </div>
+

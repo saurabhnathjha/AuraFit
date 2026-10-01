@@ -1,0 +1,394 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import '@fontsource/raleway/300.css';
+@import '@fontsource/raleway/600.css';
+/* Full viewport background */
+body {
+  font-family: 'Raleway', sans-serif !important;
+  font-weight: 300;
+}
+
+.brand {
+  font-weight: 600;
+}
+
+
+
+.landing-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: linear-gradient(to right, #808080, #ffffff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.hero-section {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  max-width: 1200px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Hero image */
+.hero-img {
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  height: 90%;
+  max-height: 700px;
+  object-fit: contain;
+  z-index: 2;
+  margin-left: 5%;
+  max-width: 500px;
+  margin-top: 2rem;
+  width: 50vw;
+  min-width: 300px;
+  transition: opacity 1s ease-in-out;
+}
+
+/* Text & button container */
+.hero-text {
+  position: relative;
+  max-width: 700px;
+  text-align: right;
+  margin-left: auto;
+}
+
+  .hero-text h1 {
+    font-size: 3rem;
+    z-index: 1;
+    font-weight: 300;
+    color: #333;
+    font-family: 'Raleway';
+    line-height: 1.2;
+    font-weight: 300;
+  }
+
+  .hero-text .brand {
+    font-weight: 300;
+    color: #0d8bf2;
+  }
+
+.cta-button {
+  position: relative;
+  z-index: 5;
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: #1A237E !important;
+  height: 3rem;
+}
+
+
+.joinBtn{
+    color: #ffffff;
+}
+
+/* Hero section */
+.landing-hero {
+  position: relative;
+  background: linear-gradient(to right, #f8f9fa, #e0f7fa);
+  text-align: center;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.brand {
+  font-family: 'Raleway';
+  font-weight: 600;
+  color: #2196f3;
+}
+
+/* Features section */
+.features-section {
+  background-color: #fff;
+  padding: 4rem 2rem;
+  text-align: center;
+  padding-bottom: 8rem;
+}
+
+.features-title {
+  font-size: 2.5rem;
+  font-weight: 200;
+  margin-bottom: 3rem;
+  color: #3e3e3e;
+}
+
+.feature-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.feature-card {
+  width: 300px;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+  .feature-card:hover {
+    transform: translateY(-5px);
+  }
+
+.feature-title {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 500;
+  font-size: 1.2rem;
+  margin: 1rem 0 0.5rem;
+}
+
+.feature-description {
+  font-size: 0.95rem;
+  color: #666;
+  padding: 0 1rem;
+}
+
+
+.footer-section {
+  background-color: #000;
+  color: white;
+  padding: 40px 20px;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.footer-column {
+  flex: 1;
+  min-width: 250px;
+  margin: 10px;
+}
+
+  .footer-column h3 {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
+
+  .footer-column p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .footer-column .phone {
+    color: #00aaff;
+    font-weight: bold;
+    margin: 5px 0;
+  }
+
+.newsletter-input {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+  .newsletter-input input {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+  }
+
+  .newsletter-input button {
+    background-color: #00aaff;
+    border: none;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+.footer-bottom {
+  border-top: 1px solid #444;
+  padding-top: 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: 0.85rem;
+}
+
+  .footer-bottom a {
+    color: #00aaff;
+    text-decoration: none;
+  }
+
+.social-icons a {
+  margin-left: 10px;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.bmi-section {
+  color: white;
+  padding: 160px 20px;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 8rem;
+  background: linear-gradient(to bottom, #1A237E, #2b3acf);
+}
+
+.bmi-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.bmi-title {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.bmi-subtitle {
+  margin-bottom: 30px;
+  font-size: 1.2rem;
+}
+
+.bmi-form {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.bmi-result-card {
+  padding: 1rem;
+  margin-top: 1rem;
+  background-color: #1A237E;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.underweight, .overweight {
+  color: #e65100;
+}
+
+.normal {
+  color: #256029;
+}
+
+.obese {
+  color: #b00020;
+}
+
+
+  .bmi-form input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 150px;
+    font-size: 1rem;
+  }
+
+  .bmi-form button {
+    padding: 10px 20px;
+    background-color: white;
+    font-size: 1.1rem;
+    color: #007bff;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+.bmi-form button:hover {
+  padding: 10px 20px;
+  background-color: #d6d6d6;
+}
+
+.bmi-result {
+  margin-top: 20px;
+  font-size: 1.2rem;
+}
+
+.bmi-result strong {
+  margin-top: 20px;
+  font-size: 1.2rem;
+}
+
+.testimonials-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 8rem;
+}
+
+.testimonials-section {
+  padding: 60px 20px;
+  background-color: #f8f9fa;
+  text-align: center;
+}
+
+.testimonial {
+  background-color: white;
+  padding: 25px 20px 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 350px;
+  flex: 1;
+  position: relative;
+}
+
+.testimonial-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto 15px;
+  display: block;
+  border: 3px solid #007BFF;
+}
+
+.testimonial-text {
+  font-style: italic;
+  font-size: 1em;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.testimonial-author {
+  font-weight: bold;
+  color: #007BFF;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  font-weight: 100;
+  color: #3e3e3e;
+  margin-bottom: 3rem;
+}
+
+
+.underweight, overweight {
+  color: orange;
+}
+
+.normal {
+  color: #ffffff;
+}
+
+.obese {
+  color: red;
+}

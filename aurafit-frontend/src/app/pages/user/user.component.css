@@ -1,0 +1,150 @@
+.user-page-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.cards-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.user-card {
+  flex: 1 1 320px;
+  max-width: 450px;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.card-header {
+
+  color: var(--mat-sys-on-primary-container);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 8px;
+}
+
+
+.card-content {
+  margin-top: 16px;
+}
+
+.form-content {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auto-summary {
+  margin-top: 12px;
+}
+
+.label {
+  font-weight: 500;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.form-buttons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.logout-button-wrapper {
+/*  background-color: var(--mat-sys-error-container);*/
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 1rem;
+}
+
+.material-symbols-outlined {
+  font-size: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* === Responsive Adjustments === */
+@media (max-width: 768px) {
+  .cards-row {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logout-button-wrapper {
+    justify-content: center;
+  }
+
+  .user-card {
+    width: 100%;
+    max-width: 95%;
+  }
+
+  .form-buttons {
+    justify-content: center;
+  }
+}
+
+.user-card {
+  /*  background-color: #fafafa;*/
+  border-radius: 12px;
+  box-shadow: var(--mat-sys-level4)
+}
+
+.card-content p {
+  padding-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.auto-summary p {
+  padding-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.icon {
+  /*font-size: 20px;*/
+/*  color: #3f51b5;*/
+  /*vertical-align: middle;*/
+}
+
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 8px;
+  width: 100%;
+}
+
+/* New section to horizontally align icon + title */
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  flex-grow: 1;
+}
+
+/* Ensures button doesn’t shrink the title alignment */
+.card-header button {
+  flex-shrink: 0;
+}
+
+.shadow {
+  padding:2px;
+  box-shadow: var(--mat-sys-level2);
+}

@@ -1,0 +1,58 @@
+<div class="auth-wrapper">
+  <mat-card appearance="outlined" class="auth-card">
+    <div class="auth-header">
+      <span class="material-symbols-outlined auth-icon">account_circle</span>
+      <h2 class="mat-headline-medium title">Register</h2>
+    </div>
+
+    <form #registerForm="ngForm" (ngSubmit)="register()" class="auth-form" autocomplete="off">
+      <div class="form-row">
+        <!-- Username -->
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Username</mat-label>
+          <input matInput
+                 name="username"
+                 [(ngModel)]="username"
+                 required
+                 minlength="4"
+                 #usernameInput="ngModel" />
+          <mat-error *ngIf="usernameInput.invalid && usernameInput.touched">
+            Username is required and must be at least 4 characters.
+          </mat-error>
+        </mat-form-field>
+
+        <!-- Password -->
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Password</mat-label>
+          <input matInput
+                 type="password"
+                 name="password"
+                 [(ngModel)]="password"
+                 required
+                 minlength="6"
+                 #passwordInput="ngModel" />
+          <mat-error *ngIf="passwordInput.invalid && passwordInput.touched">
+            Password is required and must be at least 6 characters.
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <button mat-flat-button
+              color="primary"
+              class="full-width mat-button"
+              [disabled]="registerForm.invalid">
+        Register
+      </button>
+
+      <div *ngIf="errorMessage" class="error-message">
+        <span class="material-symbols-rounded error-icon">error</span>
+        <span>{{ errorMessage }}</span>
+      </div>
+
+      <p class="alt-link">
+        Already have an account?
+        <a routerLink="/login">Login here</a>
+      </p>
+    </form>
+  </mat-card>
+</div>

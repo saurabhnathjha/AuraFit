@@ -1,0 +1,26 @@
+
+<div *ngIf="successMessageShown; else formContent" class="full-page-message">
+  Workout Plan Created! Redirecting to today's workout...
+</div>
+
+<ng-template #formContent>
+  <h2>Create Weekly Workout Plan</h2>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Plan Name</mat-label>
+    <input matInput [(ngModel)]="planName" placeholder="Enter plan name" />
+  </mat-form-field>
+
+  <div *ngFor="let day of weekDays">
+    <h3>{{ day }}</h3>
+    <mat-selection-list [multiple]="true"
+                        [ngModel]="selectedExercises[day]"
+                        (ngModelChange)="onSelectionChange(day, $event)">
+      <mat-list-option *ngFor="let exercise of exercises" [value]="exercise.exerciseCatalogId">
+        {{ exercise.name }}
+      </mat-list-option>
+    </mat-selection-list>
+  </div>
+
+  <button mat-raised-button color="primary" (click)="submitPlan()">Submit Plan</button>
+</ng-template>

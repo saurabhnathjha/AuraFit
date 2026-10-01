@@ -1,0 +1,31 @@
+<div class="sidebar-wrapper" [ngClass]="{ 'collapsed': collapsed }">
+  <div class="sidebar-nav">
+    <a mat-list-item routerLink="/dashboard" [matTooltip]="collapsed ? 'Dashboard' : null"
+       class="sidebar-link" [ngClass]="{ 'collapsed': collapsed }">
+      <span class="icon material-symbols-outlined">dashboard</span>
+      <span class="label">Dashboard</span>
+    </a>
+
+    <a mat-list-item routerLink="/log-workout" [matTooltip]="collapsed ? 'Workout' : null"
+       class="sidebar-link" [ngClass]="{ 'collapsed': collapsed }">
+      <span class="icon material-symbols-outlined">fitness_center</span>
+      <span class="label">Workout</span>
+    </a>
+
+    <a mat-list-item routerLink="/food-log" [matTooltip]="collapsed ? 'Meals' : null"
+       class="sidebar-link" [ngClass]="{ 'collapsed': collapsed }">
+      <span class="icon material-symbols-outlined">restaurant</span>
+      <span class="label">Meals</span>
+    </a>
+    <a mat-list-item routerLink="/yourworkout" [matTooltip]="collapsed ? 'Your Workout Plan' : null" class="sidebar-link" [ngClass]="{ 'collapsed': collapsed }">
+      <span class="material-symbols-outlined">calendar_today</span>
+      <span class="label">Your Workout</span>
+    </a>
+  </div>
+
+  <!-- Chatbot pinned at bottom -->
+  <a class="sidebar-link chatbot-link" (click)="toggleChat()">
+    <span class="material-symbols-outlined">smart_toy</span>
+    <span class="label">Ask Aura</span>
+  </a>
+</div>

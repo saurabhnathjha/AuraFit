@@ -1,0 +1,18 @@
+<h2>Add Team Member</h2>
+
+<form [formGroup]="teamForm" (ngSubmit)="onSubmit()">
+  <label>Name:</label>
+  <input formControlName="name" type="text" required />
+
+  <label>Role:</label>
+  <input formControlName="role" type="text" required />
+
+  <label>Contribution:</label>
+  <textarea formControlName="contribution" rows="3" required></textarea>
+
+  <label>LinkedIn URL:</label>
+  <input formControlName="linkedin" type="url" />
+
+  <button type="submit">Add</button>
+</form>
+

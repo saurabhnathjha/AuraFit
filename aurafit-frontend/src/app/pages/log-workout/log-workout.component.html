@@ -1,0 +1,203 @@
+<!-- Toggle Workout Form -->
+<div class="top-log-btn-container">
+  <button mat-stroked-button style="background-color:var(--mat-sys-primary); color:var(--mat-sys-on-primary)" (click)="showForm = !showForm">
+    <mat-icon class="material-symbols-outlined" fontIcon="fitness_center"></mat-icon>
+    {{ showForm ? 'Hide Form' : currentEditId ? 'Edit Workout' : 'Log a Workout' }}
+  </button>
+</div>
+
+<!-- Workout Form Card -->
+<mat-card appearance="outlined" *ngIf="showForm" class="log-workout-container">
+  <!--might remove toolbar-->
+  <mat-toolbar color="transparent" class="workout-title-toolbar">
+    <mat-icon fontIcon="edit_calendar" class="material-symbols-outlined"></mat-icon>
+    <span>
+      {{ currentEditId ? 'Edit Workout' : 'Log a Workout' }}
+    </span>
+  </mat-toolbar>
+
+  <form [formGroup]="workoutForm" (ngSubmit)="submit()">
+    <!-- Date Field -->
+    <mat-form-field class="log-time-field">
+      <mat-label>Date</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="loggedAt" required />
+      <mat-datepicker-toggle matSuffix [for]="picker">
+        <mat-icon matDatepickerToggleIcon class="material-symbols-outlined">calendar_today</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <!-- Exercises FormArray -->
+    <div formArrayName="exercises">
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let exercise of exercises.controls; let i = index" [formGroupName]="i">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{'Exercise ' + (i + 1) }}
+            </mat-panel-title>
+
+            <!-- Remove Button Icon -->
+            <span class="spacer"></span>
+            <button mat-icon-button
+                    type="button"
+                    style="color:var(--mat-sys-error); margin-right:12px;"
+                    (click)="removeExercise(i)"
+                    matTooltip="Remove Exercise"
+                    aria-label="Remove Exercise">
+              <mat-icon class="material-symbols-outlined">close</mat-icon>
+            </button>
+
+          </mat-expansion-panel-header>
+
+          <!-- Form Fields -->
+          <div class="exercise-fields">
+            <mat-form-field appearance="fill">
+              <mat-label>Exercise</mat-label>
+              <mat-select formControlName="exerciseCatalogId" required>
+                <mat-option *ngFor="let option of exerciseOptions" [value]="option.exerciseCatalogId">
+                  {{ option.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Reps</mat-label>
+              <input matInput type="number" formControlName="reps" />
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Sets</mat-label>
+              <input matInput type="number" formControlName="sets" />
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Weight (kg)</mat-label>
+              <input matInput type="number" formControlName="weightKg" />
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Duration (min)</mat-label>
+              <input matInput type="number" formControlName="durationMin" required />
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Calories Burned (optional)</mat-label>
+              <input matInput type="number" formControlName="caloriesBurned" />
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Notes</mat-label>
+              <textarea matInput formControlName="notes" rows="2"></textarea>
+            </mat-form-field>
+
+            <mat-checkbox formControlName="personalRecord">
+              <mat-icon class="material-symbols-outlined">military_tech</mat-icon>
+              Personal Record
+            </mat-checkbox>
+          </div>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <!-- Add Exercise Button (bottom-aligned) -->
+      <div class="add-exercise-bottom-btn">
+        <button mat-stroked-button color="primary" type="button" (click)="addExercise()">
+          <mat-icon class="material-symbols-outlined">add</mat-icon>
+          Add Exercise
+        </button>
+      </div>
+    </div>
+
+    <!-- Submit & Cancel Buttons -->
+    <div class="button-row green">
+      <button mat-raised-button style="box-shadow: var(--mat-sys-level5)"
+              type="submit"
+              [ngStyle]="{'background-color': currentEditId ? 'var(--mat-sys-primary)' : 'var(--mat-sys-primary)','color': 'var(--mat-sys-on-primary)'}">
+        <mat-icon class="material-symbols-outlined">check_circle</mat-icon>
+        {{ currentEditId ? 'Update' : 'Log Workout' }}
+      </button>
+
+
+      <button mat-stroked-button color="accent" *ngIf="currentEditId" (click)="resetForm()">
+        <mat-icon class="material-symbols-outlined">cancel</mat-icon>
+        Cancel Edit
+      </button>
+    </div>
+  </form>
+</mat-card>
+
+<!-- Divider between form and past logs -->
+<mat-divider></mat-divider>
+
+<!-- Past Workouts Card -->
+<mat-card appearance="outlined" class="log-workout-container">
+  <h3 class="mat-title text-center" style="display: flex; justify-content: center; align-items: center; gap: 8px; font: var(--mat-sys-title-large)">
+    <mat-icon class="material-symbols-outlined">history</mat-icon>
+    Past Workouts
+  </h3>
+
+  <mat-accordion>
+    <mat-expansion-panel *ngFor="let log of pastWorkouts">
+      <mat-expansion-panel-header>
+        <div class="header-left">
+          <span class="log-date">{{ log.loggedAt | date: isSmallScreen ? 'mediumDate' : 'longDate' }}</span>
+        </div>
+
+        <span class="spacer"></span>
+
+        <div class="header-right">
+          <ng-container *ngIf="!isSmallScreen">
+            <span class="duration duration-inline">
+              <mat-icon class="material-symbols-outlined">schedule</mat-icon>
+              {{ log.durationMin || '?' }} min
+            </span>
+          </ng-container>
+
+          <span class="custom-chip total-calories-chip fire">
+            <mat-icon class="material-symbols-outlined">local_fire_department</mat-icon>
+            {{ log.caloriesBurned || '?' }} cal
+          </span>
+        </div>
+      </mat-expansion-panel-header>
+
+
+
+      <!-- Content inside panel -->
+      <div class="exercise-fields">
+        <div *ngFor="let ex of log.exercises">
+          <mat-chip color="primary" selected>
+            {{ ex.exerciseName }}: {{ ex.caloriesBurned || '?' }} cal
+          </mat-chip>
+        </div>
+
+     
+
+        <!-- Duration moved here on small screens -->
+        <div class="duration-inside" *ngIf="isSmallScreen">
+          <mat-icon class="material-symbols-outlined">schedule</mat-icon>
+          {{ log.durationMin || '?' }} min
+        </div>
+      </div>
+
+      <div class="button-row">
+        <button mat-stroked-button
+                color="accent"
+                (click)="onEditWorkout(log)"
+                class="action-btn"
+                [ngClass]="{ 'icon-only': isSmallScreen }">
+          <mat-icon class="material-symbols-outlined">edit</mat-icon>
+          <span *ngIf="!isSmallScreen">Edit</span>
+        </button>
+
+        <button mat-stroked-button
+                style="color: var(--mat-sys-error)"
+                (click)="onDeleteWorkout(log.workoutLogId)"
+                class="action-btn"
+                [ngClass]="{ 'icon-only': isSmallScreen }">
+          <mat-icon class="material-symbols-outlined">delete</mat-icon>
+          <span *ngIf="!isSmallScreen">Delete</span>
+        </button>
+      </div>
+    </mat-expansion-panel>
+
+  </mat-accordion>
+</mat-card>

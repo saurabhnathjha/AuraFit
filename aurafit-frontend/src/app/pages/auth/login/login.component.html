@@ -1,0 +1,36 @@
+<div class="auth-wrapper">
+  <mat-card appearance="outlined" class="auth-card">
+    <div class="auth-header">
+      <span class="material-symbols-outlined auth-icon">account_circle</span>
+      <h2 class="mat-headline-medium title">Login</h2>
+    </div>
+
+    <form (ngSubmit)="login()" class="auth-form" autocomplete="off">
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Username</mat-label>
+          <input matInput [(ngModel)]="username" name="username" required />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="half-width">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" [(ngModel)]="password" name="password" required />
+        </mat-form-field>
+      </div>
+
+      <button mat-flat-button color="primary" class="full-width mat-button">
+        Login
+      </button>
+
+      <div *ngIf="errorMessage" class="error-message">
+        <span class="material-symbols-rounded error-icon">error</span>
+        <span>{{ errorMessage }}</span>
+      </div>
+
+      <p class="alt-link">
+        Don't have an account?
+        <a routerLink="/register">Register here</a>
+      </p>
+    </form>
+  </mat-card>
+</div>

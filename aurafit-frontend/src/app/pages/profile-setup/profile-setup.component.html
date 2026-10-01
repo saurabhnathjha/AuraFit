@@ -1,0 +1,46 @@
+<div class="profile-wrapper">
+  <mat-card appearance="outlined" class="profile-card">
+    <div class="card-header">
+      <span class="material-symbols-outlined profile-icon">badge</span>
+      <h2>Set up your Profile</h2>
+    </div>
+
+    <div class="form-section">
+      <mat-form-field appearance="outline">
+        <mat-label>Age</mat-label>
+        <input matInput type="number" [(ngModel)]="age" min="1" required (blur)="removeLeadingZero('age')" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Gender</mat-label>
+        <mat-select [(ngModel)]="gender" required>
+          <mat-option *ngFor="let g of genders" [value]="g">{{ g }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Height (cm)</mat-label>
+        <input matInput type="number" [(ngModel)]="heightCm" min="30" max="300" required (blur)="removeLeadingZero('heightCm')" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Weight (kg)</mat-label>
+        <input matInput type="number" [(ngModel)]="weightKg" min="10" max="500" required (blur)="removeLeadingZero('weightKg')" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Activity Level</mat-label>
+        <mat-select [(ngModel)]="activityLevel" required>
+          <mat-option *ngFor="let level of activityLevels" [value]="level">{{ level }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <button mat-flat-button class="full-width save-button" (click)="submitProfile()">
+       Save Profile
+      </button>
+
+      <mat-error *ngIf="errorMessage" class="error-message">{{ errorMessage }}</mat-error>
+    </div>
+
+  </mat-card>
+</div>

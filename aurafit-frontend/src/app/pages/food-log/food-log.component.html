@@ -1,0 +1,149 @@
+<div class="food-log-container">
+
+  <!-- Log Meal Toolbar -->
+  <mat-toolbar color="transparent" class="meals-toolbar mat-typography">
+    <div class="toolbar-content">
+      <!-- FAB Icon Button -->
+      <button mat-mini-fab (click)="toggleForm()" aria-label="Log Meal">
+        <mat-icon class="material-symbols-outlined">
+          {{ showLogForm ? 'close' : 'add' }}
+        </mat-icon>
+      </button>
+
+      <!-- Title -->
+      <h2 class="mat-headline-small toolbar-title">Log a Meal</h2>
+    </div>
+  </mat-toolbar>
+
+  <!-- Meal Form -->
+  <mat-card *ngIf="showLogForm" class="meal-log-card">
+    <!--<mat-card-title>Log a Meal</mat-card-title>-->
+    <mat-card-content>
+      <form #mealForm="ngForm" (ngSubmit)="logMeal()" class="meal-form-grid">
+
+        <mat-form-field appearance="outline">
+          <mat-label>Meal Type</mat-label>
+          <input matInput [matAutocomplete]="mealTypeAuto" [(ngModel)]="mealType" name="mealType" required placeholder="e.g. Lunch" />
+          <mat-autocomplete #mealTypeAuto="matAutocomplete">
+            <mat-option *ngFor="let type of predefinedMealTypes" [value]="type">
+              {{ type }}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>What did you eat?</mat-label>
+          <textarea matInput rows="3" [(ngModel)]="mealQuery" name="mealQuery" required placeholder="e.g. 2 eggs & toast"></textarea>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Notes (optional)</mat-label>
+          <textarea matInput rows="2" [(ngModel)]="mealDescription" name="mealDescription" placeholder="Extra comments"></textarea>
+        </mat-form-field>
+
+        <div class="form-actions">
+          <button mat-flat-button color="primary" type="submit" [disabled]="loading">
+            <mat-icon class="material-symbols-outlined">check_circle</mat-icon>
+            <span class="hide-on-xs">Log Meal</span>
+          </button>
+          <mat-progress-spinner *ngIf="loading" mode="indeterminate" diameter="24" color="accent"></mat-progress-spinner>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-divider class="section-divider"></mat-divider>
+
+  <!-- Logged Meals Section -->
+  <!-- Logged Meals Toolbar -->
+  <mat-toolbar color="transparent" class="meals-toolbar mat-typography">
+    <div class="toolbar-content">
+      <mat-icon class="material-symbols-outlined">inventory</mat-icon>
+      <h3 class="mat-title">Logged Meals</h3>
+    </div>
+  </mat-toolbar>
+
+
+  <ng-container *ngIf="pagedMeals.length > 0; else noMeals">
+    <mat-card *ngFor="let meal of pagedMeals" class="meal-card responsive-meal-card">
+
+      <div class="meal-header">
+        <div>
+          <div class="meal-title">{{ meal.name }}</div>
+          <div class="meal-subtitle">{{ meal.loggedAt | date: 'medium' }}</div>
+        </div>
+        <div class="meal-header-right">
+          <div class="custom-chip">
+            <mat-icon class="material-symbols-outlined fire">local_fire_department</mat-icon>
+            {{ meal.totalCalories ?? calculateCalories(meal) }} kcal
+          </div>
+          <button mat-icon-button style="color: var(--mat-sys-primary)" (click)="editMeal(meal)" aria-label="Edit">
+            <mat-icon class="material-symbols-outlined">edit</mat-icon>
+          </button>
+
+          <button mat-icon-button style="color: var(--mat-sys-error)" (click)="deleteMeal(meal.mealId)" aria-label="Delete">
+            <mat-icon class="material-symbols-outlined">delete</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <mat-divider style="opacity:0.5"></mat-divider>
+
+      <!-- Edit Section -->
+      <div *ngIf="editingMeal?.mealId === meal.mealId" class="meal-edit-form">
+        <mat-form-field appearance="outline" class="edit-field">
+          <mat-label>Meal Name</mat-label>
+          <input matInput [(ngModel)]="editName" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="edit-field">
+          <mat-label>Description</mat-label>
+          <input matInput [(ngModel)]="editDescription" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="edit-field">
+          <mat-label>Meal Query</mat-label>
+          <textarea matInput rows="3" [(ngModel)]="editQuery"></textarea>
+        </mat-form-field>
+
+        <div class="edit-actions">
+          <button mat-raised-button style="background-color:var(--mat-sys-primary);color:var(--mat-sys-on-primary)" (click)="updateMeal(meal.mealId)">
+            <mat-icon class="material-symbols-outlined">check_circle</mat-icon>
+            Update
+          </button>
+          <button mat-stroked-button (click)="cancelEdit()">
+            <mat-icon class="material-symbols-outlined">cancel</mat-icon>
+            Cancel
+          </button>
+        </div>
+      </div>
+      <mat-divider class="edit-divider"></mat-divider>
+
+
+      <!-- Meal Details -->
+      <mat-card-content class="meal-card-content">
+        <p *ngIf="meal.description">
+          <mat-icon class="material-symbols-outlined inline-icon">notes</mat-icon>
+          {{ meal.description }}
+        </p>
+
+        <div class="food-item-list">
+          <div *ngFor="let item of meal.foodItems" class="food-item">
+            <span class="food-name">{{ item.name }}</span>
+            <span class="food-dot">•</span>
+            <span class="food-quantity">{{ item.quantity }}</span>
+            <span class="food-dot">•</span>
+            <span class="food-calories">{{ item.calories }} kcal</span>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <!-- Pagination -->
+    <mat-paginator [length]="meals.length" [pageSize]="pageSize" (page)="onPageChange($event)"></mat-paginator>
+  </ng-container>
+
+  <ng-template #noMeals>
+    <p class="mat-body-medium text-center text-muted">No meals logged yet.</p>
+  </ng-template>
+</div>

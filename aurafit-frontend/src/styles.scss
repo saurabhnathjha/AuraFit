@@ -1,0 +1,165 @@
+@use '@angular/material' as mat;
+
+html {
+  @include mat.theme(
+      (
+       color: (
+      primary: mat.$blue-palette,
+      tertiary: mat.$violet-palette,
+    ),
+     
+    typography: (
+      plain-family: Roboto,
+      brand-family: Open Sans,
+      bold-weight: 900,
+      medium-weight: 500,
+      regular-weight: 300,
+    ),
+    density: 0,
+  ),
+   $overrides:(
+      "surface": #f9f9f9
+      ),);
+}
+
+html.dark-theme {
+  color-scheme: dark;
+
+  @include mat.theme((
+    color: (
+      primary: mat.$violet-palette,
+      tertiary: mat.$blue-palette,
+      theme-type: dark,
+    ),
+    typography: (
+      plain-family: Roboto,
+      brand-family: Open Sans,
+      bold-weight: 900,
+      medium-weight: 500,
+      regular-weight: 300,
+    ),
+    density: 0,
+  ));
+}
+
+
+
+/* === Reset & Base === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.auth-wrapper {
+  max-width: 400px;
+  margin: auto;
+  padding: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 120px);
+  //background-color: var(--md-sys-color-background);
+}
+
+mat-card.auth-card {
+  padding: 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button.full-width {
+  width: 100%;
+  height: 48px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: none;
+  border-radius: 4px;
+}
+
+/* === Form Fields === */
+mat-form-field.full-width {
+  width: 100%;
+  display: block;
+}
+
+.mat-mdc-text-field-wrapper,
+.mat-mdc-input-element {
+  width: 100% !important;
+  display: block !important;
+  box-sizing: border-box;
+}
+
+/* === Success Styling === */
+.submitted-success .mat-mdc-form-field .mdc-notched-outline,
+.submitted-success .mat-mdc-form-field .mdc-notched-outline__leading,
+.submitted-success .mat-mdc-form-field .mdc-notched-outline__trailing,
+.submitted-success .mat-mdc-form-field .mdc-notched-outline__notch {
+  border-color: #4caf50 !important;
+  stroke: #4caf50 !important;
+}
+
+.submitted-success .mat-mdc-form-field.mat-focused .mdc-notched-outline {
+  border-color: #388e3c !important;
+}
+
+.submitted-success .mat-mdc-floating-label {
+  color: #4caf50 !important;
+}
+
+.submitted-success .mat-mdc-form-field.mat-focused .mat-mdc-floating-label {
+  color: #388e3c !important;
+}
+
+/* === Sidebar Icon & Label (Fallback global, ideally move to sidebar.css) === */
+mat-list-item .icon {
+  margin-right: 12px;
+  font-size: 20px;
+  vertical-align: middle;
+}
+
+mat-list-item .label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+
+ //.logout-btn{
+ //    @include mat.theme-overrides((
+ //        primary: red
+ //        )
+ //        );
+ //}
+
+//.logout-btn {
+//  @include mat.button-overrides(( filled-container-color: orange, filled-label-text-color: red, ));
+//}
+
+.logout-btn {
+  @include mat.button-overrides(( filled-container-color: var(--mat-sys-error), filled-label-text-color: var(--mat-sys-error-container), ));
+}
+
+//.burned-card, .chatbot-link:hover {
+//  @include mat.theme(( color: mat.$green-palette ) );
+//}
+
+.burned-card {
+  @include mat.theme(( color: mat.$green-palette ) );
+}
+
+.green {
+  @include mat.theme(( color: mat.$spring-green-palette ) );
+}
+
+.fire {
+  @include mat.theme(( color: mat.$orange-palette ) );
+}

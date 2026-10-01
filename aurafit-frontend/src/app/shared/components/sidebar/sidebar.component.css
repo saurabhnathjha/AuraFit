@@ -1,0 +1,117 @@
+/* ===== Sidebar Container ===== */
+.sidebar-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 64px); /* Subtract navbar height */
+  width: 220px;
+  position: sticky;
+  top: 64px; /* Push it below the fixed navbar */
+  border-right: 1px solid var(--mat-sys-outline);
+  transition: width 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+  
+}
+
+  .sidebar-wrapper.collapsed {
+    width: 72px;
+  }
+
+/* ===== Sidebar Navigation ===== */
+.sidebar-nav {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0;
+  gap: 4px;
+}
+
+/* ===== Sidebar Link Style (General) ===== */
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: var(--mat-sys-on-surface);
+  border-radius: 8px;
+  height: 48px; /* Maintain fixed height for smooth transition */
+  overflow: hidden; /* Hide overflowing content during transition */
+  white-space: nowrap; /* Prevent text wrapping */
+  transition: background-color 0.2s ease, color 0.2s ease;
+
+}
+
+  .sidebar-link:hover {
+    color: var(--mat-sys-primary);
+    box-shadow: var(--mat-sys-level5);
+  }
+
+/* ===== Icon and Label Styles (General) ===== */
+.material-symbols-outlined {
+  font-size: 24px;
+  line-height: 1; /* Ensures consistent vertical alignment */
+  flex-shrink: 0; /* Prevents icon from shrinking */
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.label {
+  /*  font-size: 16px;*/
+  font: var(--mat-sys-title-medium);
+  line-height: 1; /* Ensures consistent vertical alignment */
+  white-space: nowrap;
+  flex-grow: 1; /* Allows label to take available space */
+  /* Transitions for hiding/showing the label smoothly */
+  transition: opacity 0.2s ease, width 0.2s ease, margin 0.2s ease;
+}
+
+/* ===== Behavior for ALL Sidebar Links (including Chatbot) ===== */
+
+/* When sidebar is expanded: hide icons, show labels for relevant elements */
+.sidebar-wrapper:not(.collapsed) .sidebar-link .icon {
+  display: none; /* Hide icon when expanded for all sidebar links */
+}
+
+.sidebar-wrapper:not(.collapsed) .sidebar-link .label {
+  opacity: 1;
+  width: auto;
+  margin-left: 0; /* Ensure label is fully visible and correctly positioned */
+}
+
+/* When sidebar is collapsed: show icons, hide labels for all sidebar links */
+.sidebar-wrapper.collapsed .sidebar-link .icon {
+  display: block; /* Show icon when collapsed for all sidebar links */
+  margin: 0 auto; /* Center icon when label is hidden */
+}
+
+.sidebar-wrapper.collapsed .sidebar-link .label {
+  opacity: 0;
+  width: 0;
+  margin-left: -12px; /* Pull label out of view for smooth hide */
+  overflow: hidden;
+}
+
+/* ===== Chatbot Link (Pinned to Bottom) ===== */
+.chatbot-link {
+  margin-top: auto; /* Pushes it to the bottom */
+  border-top: 1px solid var(--mat-sys-outline);
+  color: var(--mat-sys-primary);
+  border-radius: 0; /* Override border-radius from .sidebar-link */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; 
+  gap: 12px;
+  height: 48px;
+  padding: 0.75rem 1rem;
+}
+
+  .chatbot-link:hover {
+    background-color: var(--mat-sys-primary);
+    color: var(--mat-sys-on-primary);
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  /* Override specific rules for chatbot to ensure its icon is always visible, even if the general rule for expanded hides icons */
+  .chatbot-link .material-symbols-outlined {
+    display: block; /* Ensure icon is always visible */
+  }
+

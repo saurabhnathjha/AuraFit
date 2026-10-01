@@ -1,0 +1,110 @@
+/* Main layout wrapper */
+.dashboard-wrapper {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  padding: 24px;
+}
+
+/* Left column (dashboard) */
+.dashboard-container {
+  flex: 2;
+  min-width: 320px;
+  max-width: 700px;
+}
+
+/* Right column (Spotify) */
+.spotify-container {
+  flex: 1;
+  min-width: 280px;
+  max-width: 320px;
+  background-color: var(--mat-sys-surface-container-high);
+  color: var(--mat-sys-on-surface);
+  border-left: 5px solid var(--mat-sys-color-secondary);
+  box-shadow: var(--mat-elevation-3);
+}
+
+/* Titles */
+.dashboard-title,
+.section-title {
+    font:var(--mat-sys-title-large);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+/* Grid for stats */
+.stats-grid {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+  font:var(--mat-sys-body-large)
+}
+
+.stats-card {
+  flex: 1;
+  min-width: 250px;
+  box-shadow: var(--mat-sys-level1);
+}
+
+.consumed-card {
+  border-left: 5px solid var(--mat-sys-tertiary);
+}
+
+.burned-card {
+  border-left: 5px solid var(--mat-sys-primary);
+}
+
+.stat-label {
+  margin-bottom: 4px;
+  font: var(--mat-sys-label-large)
+}
+
+.highlight {
+  color: var(--mat-sys-primary);
+/*  font: var(--mat-sys-body-large)*/
+}
+
+.my-divider {
+  margin: 32px 0 16px;
+  border-color: var(--mat-sys-color-outline);
+}
+
+.calories-left-card {
+  margin-top: 16px;
+  background-color: var(--mat-sys-primary-container);
+  color: var(--mat-sys-on-primary-container);
+  border-left: 5px solid var(--mat-sys-color-primary);
+  box-shadow: var(--mat-sys-level3);
+}
+
+.calories-left-highlight {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.goal-summary {
+  box-shadow: var(--mat-sys-level1);
+}
+
+/* Responsive tweaks */
+@media (max-width: 900px) {
+  .dashboard-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .spotify-container {
+    order: 2;
+    margin-top: 24px;
+    width: 100%;
+  }
+}
+
+.mat-body {
+  font: var(--mat-sys-body-large)
+}
